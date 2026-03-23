@@ -1,0 +1,15 @@
+C Language
+A compiled, low-level programming language that lets you write fast, precise instructions to control memory and hardware directly.
+
+Arduino uses C++ (C++ is C plus extra features)
+Raspberry PI uses C and Python (C is simple, low-level, procedural)
+
+C-Basics:
+- variables
+- if/else
+- loops
+- functions
+- reading/writing pins
+- serial printing
+- analog vs digital signals
+- timing and delays
