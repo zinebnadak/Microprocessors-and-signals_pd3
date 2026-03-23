@@ -8,6 +8,11 @@ An introduction to microprocessor systems, signal theory, and embedded programmi
 - Understand the architecture and function of microprocessors and microcontrollers
 - Program and build real microprocessor applications
 
+## Tools Used
+Arduino - Reading sensors, PWM signals, real-time control
+Raspberry - PiLogging data, running Python, displaying output
+Logisim - Designing and simulating digital circuits before building
+
 ## Course Content
 - Analog & digital signals — sampling, aliasing, quantization
 - Microprocessors — architecture, connectivity, and environment interaction
