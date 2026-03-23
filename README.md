@@ -9,9 +9,9 @@ An introduction to microprocessor systems, signal theory, and embedded programmi
 - Program and build real microprocessor applications
 
 ## Tools Used
-Arduino - Reading sensors, PWM signals, real-time control
-Raspberry - PiLogging data, running Python, displaying output
-Logisim - Designing and simulating digital circuits before building
+### Arduino - Reading sensors, PWM signals, real-time control
+### Raspberry - PiLogging data, running Python, displaying output
+### Logisim - Designing and simulating digital circuits before building
 
 ## Course Content
 - Analog & digital signals — sampling, aliasing, quantization
@@ -24,3 +24,9 @@ Logisim - Designing and simulating digital circuits before building
 ## Prerequisites
 - Basic programming (equivalent to Introduction to Programming)
 - Basic mathematics (equivalent to Discrete Mathematics)
+
+## Personal project
+Environment Data Logger: a system that reads real-world data, processes it, and displays it meaningfully. 
+Covers signals, sampling, sensors, actuators, microprocessor programming, and a real application.
+
+
