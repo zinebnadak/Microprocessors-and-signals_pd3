@@ -57,9 +57,30 @@ Sound → KY-038 → Arduino (ADC + Serial) → Raspberry Pi → Graph & Log
 
 ---
 
+## Notes
+
+### Simulate ADC circuit (Logism)
+The 3 pins on the left placed vertically represents dirrerent voltage threshholds: "V1 = low sound", "V2 = medium sound", "V3 = loud sound" 
+
+The next row of three pins represents Binary numbers use only 0s and 1s: B2 = heavy bit (adds 4), B1 = middle bit (adds 2), B0 = light bit (adds 1). Together they output a number 0–7. 
+7 = loud, 0 = silent. Changed type to "output" on Logism.
+
+AND gate 1: output is 1 only when BOTH V1 AND V2 are active
+→ means sound is at least medium loud
+→ result goes to B2 (adds 4 to the number)
+
+AND gate 2: output is 1 only when BOTH V2 AND V3 are active
+→ means sound is loud
+→ result goes to B1 (adds 2 to the number)
+
+B0: no gate needed — V3 connects directly
+→ output is 1 whenever any loud sound is detected
+→ adds 1 to the number
+
 ## How to Run
 > ⚠️ Instructions added as each phase is completed.
 
 ---
+
 
 *Built for Microprocessors & Signals*
