@@ -80,7 +80,34 @@ B0: no gate needed — V3 connects directly
 ## How to Run
 > ⚠️ Instructions added as each phase is completed.
 
----
+### Day 1:
+ adc_simulation.circ is my Logism sketch to simulate the wiring of a 3-bit ADC circuit (analog-to-digital converter). It correctly converts 3 voltage levels into a binary number 0–7. This is the exact concept inside  Arduino's chip. When .circ is placed in VS code it converts to XML language .
+
+## Logisim ADC Circuit
+![ADC Circuit](adc_simulation.png)
+
+### Day 2:
+I use: Arduino Uno, KY-038 sound sensor, Breadboard, 3 jumper wires, USB cable. 
+
+The KYC-038 has 4 pins: 
+"+"  →  power (3.3V or 5V)
+G  →  ground (negative)
+DO   →  digital output
+AO   →  analog output ← this is the one I will use
+
+Wiring to the Arduino:
+Push the KY-038 into your breadboard, so everything you plug into column 1 (a1, b1, c1, d1, e1) is electrically connected to each other:
+AO pin → hole a1 → Arduino A0 with a jumper wire
+G pin → hole a2 → Arduino GND with a jumper wire
++ pin → hole a3 → Arduino 5V with a jumper wire
+DO pin → hole a4
+
+Plug  Arduino into Mac via USB, in Arduino IDE after selecting the board "Arduino Uno - /dev/cu.usbmodem1401" Then click "upload" for the C++ code to run:
+
+[`sound_sensor_monitr.ino`](sound_sensor_monitr.ino) — 
+
+Now I can see: KY-038 sensor is very sensitive and picks up tiny vibrations and electrical noise (random interference in the circuit) even in silence. The Arduino's ADC (analog-to-digital converter) is doing exactly what my Logisim circuit simulated eg. converting real sound waves into numbers 0–1023, with Data streams over USB serial to my Mac.
+
 
 
 *Built for Microprocessors & Signals*
