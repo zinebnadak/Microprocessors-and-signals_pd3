@@ -46,9 +46,9 @@ Sound → KY-038 → Arduino (ADC + Serial) → Raspberry Pi → Graph & Log
 
 | Days | Task | Tool | Status |
 |---|---|---|---|
-| 1–2 | Simulate ADC circuit | Logisim | ⬜ |
-| 3–4 | Wire KY-038, read analog values | Arduino | ⬜ |
-| 5–6 | Send data over USB serial | Arduino | ⬜ |
+| 1–2 | Simulate ADC circuit | Logisim | ✓ |
+| 3–4 | Wire KY-038, read analog values | Arduino | ✓ |
+| 5–6 | Send data over USB serial | Arduino | ✓  |
 | 7–8 | Set up Pi OS, receive data in Python | Raspberry Pi | ⬜ |
 | 9–10 | Log data to CSV | Pi + Python | ⬜ |
 | 11–12 | Live graph with matplotlib | Pi + Python | ⬜ |
