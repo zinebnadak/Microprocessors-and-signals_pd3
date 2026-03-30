@@ -108,6 +108,28 @@ Plug  Arduino into Mac via USB, in Arduino IDE after selecting the board "Arduin
 
 Now I can see: KY-038 sensor is very sensitive and picks up tiny vibrations and electrical noise (random interference in the circuit) even in silence. The Arduino's ADC (analog-to-digital converter) is doing exactly what my Logisim circuit simulated eg. converting real sound waves into numbers 0–1023, with Data streams over USB serial to my Mac.
 
+### Day 3:
+The Micro SD card is what holds the OS.
+Connect:
+PI to power
+PI to monitor (through HDMI)
+PI to Mac Mini (through Ethernet)
 
+In terminal run arp -a. This shows all devices connected to Mac.
+
+Remove the SD card and plug into Mac. Now the SD card mounted on your Mac! The bootfs drive is exactly what we need.
+
+Open Terminal: touch /Volumes/bootfs/ssh (This creates an empty file called ssh in the boot partition — Raspberry Pi OS sees this file on startup and automatically enables SSH)
+Then: ls /Volumes/bootfs/ (lists all files)
+Then: cat /Volumes/bootfs/issue.txt (get current PI OS version)
+
+New Raspberry Pi OS requires you to set a username and password during first boot using a special file. There is no default pi user anymore:
+
+In terminal: 
+openssl passwd -1 hejhej  (It will output a long string. Copy that entire string)
+echo 'admin:PASTE_THE_STRING_HERE' > /Volumes/bootfs/userconf.txt (creates the user file named userconf.txt)
+
+Then eject the SD card, put it back in the Pi, boot it up:
+ssh admin@192.168.1.103
 
 *Built for Microprocessors & Signals*
