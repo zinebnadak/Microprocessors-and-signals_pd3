@@ -25,8 +25,9 @@ An introduction to microprocessor systems, signal theory, and embedded programmi
 - Basic programming (equivalent to Introduction to Programming)
 - Basic mathematics (equivalent to Discrete Mathematics)
 
-## Personal project
-Environment Data Logger: a system that reads real-world data, processes it, and displays it meaningfully. 
+## Project files 
 Covers signals, sampling, sensors, actuators, microprocessor programming, and a real application.
+
+[arduino-sensor-monitor/](arduino-sensor-monitor/) — Sound Data Logger
 
 
