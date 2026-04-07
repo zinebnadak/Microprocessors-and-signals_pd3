@@ -115,21 +115,14 @@ PI to power
 PI to monitor (through HDMI)
 PI to Mac Mini (through Ethernet)
 
-In terminal run arp -a. This shows all devices connected to Mac.
+Install the imager "balena Etcher" (I had trouble with the Raspberry Pi Imager, but both are flasher tools)
+- insert micro SD in adapter
+- flash from file 
+- select target (make sure to select the correct drive with the size etc)
+- press "flash", then it will start bruning the file into the SD card...
 
-Remove the SD card and plug into Mac. Now the SD card mounted on your Mac! The bootfs drive is exactly what we need.
+When done insert the SD card into the Raspberry pie 
 
-Open Terminal: touch /Volumes/bootfs/ssh (This creates an empty file called ssh in the boot partition — Raspberry Pi OS sees this file on startup and automatically enables SSH)
-Then: ls /Volumes/bootfs/ (lists all files)
-Then: cat /Volumes/bootfs/issue.txt (get current PI OS version)
 
-New Raspberry Pi OS requires you to set a username and password during first boot using a special file. There is no default pi user anymore:
-
-In terminal: 
-openssl passwd -1 hejhej  (It will output a long string. Copy that entire string)
-echo 'admin:PASTE_THE_STRING_HERE' > /Volumes/bootfs/userconf.txt (creates the user file named userconf.txt)
-
-Then eject the SD card, put it back in the Pi, boot it up:
-ssh admin@192.168.1.103
 
 *Built for Microprocessors & Signals*
