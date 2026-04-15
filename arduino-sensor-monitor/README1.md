@@ -49,9 +49,9 @@ Sound → KY-038 → Arduino (ADC + Serial) → Raspberry Pi → Graph & Log
 | 1–2 | Simulate ADC circuit | Logisim | ✓ |
 | 3–4 | Wire KY-038, read analog values | Arduino | ✓ |
 | 5–6 | Send data over USB serial | Arduino | ✓  |
-| 7–8 | Set up Pi OS, receive data in Python | Raspberry Pi | ⬜ |
-| 9–10 | Log data to CSV | Pi + Python | ⬜ |
-| 11–12 | Live graph with matplotlib | Pi + Python | ⬜ |
+| 7–8 | Set up Pi OS, receive data in Python | Raspberry Pi | ✓  |
+| 9–10 | Log data to CSV | Pi + Python |  ✓ |
+| 11–12 | Live graph with matplotlib | Pi + Python | ✓ |
 | 13–14 | Add buzzer actuator on threshold | Arduino + Pi | ⬜ |
 | 15–18 | Polish, test end to end | All | ⬜ |
 
@@ -122,7 +122,85 @@ Install the imager "balena Etcher" (I had trouble with the Raspberry Pi Imager, 
 - press "flash", then it will start bruning the file into the SD card...
 
 When done insert the SD card into the Raspberry pie 
+Connect the Raspberry PI with keyboard, mouse, monitor, ethernet and power.
+The connect the Arduino to the Raskberry PI with a USBA - USBB (square) cable
+Both should light up green at least
+
+Now in the GUI from the PI in terminal type: ls /dev/tty* (You’re asking the Pi: “show me all connected communication devices”)
+ls = list files
+/dev = folder where devices live (hardware shows up as files)
+tty* = “show all communication ports”
+
+/dev/ttyACM0 or /dev/ttyUSB0 = the Arduino
+
+Now read data from it. In terminal: nano read_serial.py
+In file: "import serial
+
+ser = serial.Serial('/dev/ttyACM0', 9600)
+
+while True:
+    line = ser.readline().decode().strip()
+    print(line)"
+
+Save and run from terminal: python3 read_serial.py
+
+I see Numbers start printing (0–1023)! That means Arduino is sending data, Pi is receiving it, Serial connection works. 
 
 
+### Day 9:
+Now lets make/replace the old python script to also log incoming data into a .csv file, allowing persistent storage for later analysis and visualization. read_serial_to_csv.py
+"import serial
+import csv
+
+ser = serial.Serial('/dev/ttyACM0', 9600)
+
+with open('sound_data.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+
+    while True:
+        line = ser.readline().decode().strip()
+        print(line)
+        writer.writerow([line])"
+
+In terminal run the script: python3 read_serial_to_csv.py
+Then stop it: CTRL + C
+Then check the new file with data log exists: ls
+In terminal Check the content: cat sound_data.csv
+
+Logging works!
+
+
+Now lets make the data displayed as a live graph, read_serial_to_graph.py
+"import serial
+import matplotlib.pyplot as plt
+
+ser = serial.Serial('/dev/ttyACM0', 9600)
+
+data = []
+
+plt.ion()
+
+while True:
+    line = ser.readline().decode().strip()
+
+    if line == "":
+        continue
+
+    value = int(line)
+    
+    data.append(value)
+    data = data[-50:]
+
+    plt.clf()
+    plt.plot(data)
+    plt.pause(0.01)"
+
+Before running use apt (system packages) to install matplotlib library: sudo apt install python3-matplotlib
+In terminal run the script: python3 read_serial_to_graph.py
+
+A window pops up and my Graph moves in real-time!
+
+### Day 13 
+buzzer part
 
 *Built for Microprocessors & Signals*
