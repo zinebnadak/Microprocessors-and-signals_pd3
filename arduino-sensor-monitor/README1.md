@@ -208,7 +208,7 @@ while True:
     plt.pause(0.01)
 ```
 
-Before running I needed to use apt (system packages) to install matplotlib library: ```sudo apt install python3-matplotlib```
+Before running the script, matplotlib must be installed using apt (the Linux system package manager) rather than pip. This is because on Raspberry Pi OS, matplotlib depends on system-level graphics libraries that pip alone cannot install. Using apt ensures both matplotlib and all its dependencies are installed correctly: ```sudo apt install python3-matplotlib```
 
 In terminal run the script: python3 read_serial_to_graph.py
 A window pops up and my Graph moves in real-time!
