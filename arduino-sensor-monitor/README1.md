@@ -44,16 +44,16 @@ Sound → KY-038 → Arduino (ADC + Serial) → Raspberry Pi → Graph & Log
 
 ## Build Status
 
-| Days | Task | Tool | Status |
+| Part | Task | Tool | Status |
 |---|---|---|---|
-| 1–2 | Simulate ADC circuit | Logisim | ✓ |
-| 3–4 | Wire KY-038, read analog values | Arduino | ✓ |
-| 5–6 | Send data over USB serial | Arduino | ✓  |
-| 7–8 | Set up Pi OS, receive data in Python | Raspberry Pi | ✓  |
-| 9–10 | Log data to CSV | Pi + Python |  ✓ |
-| 11–12 | Live graph with matplotlib | Pi + Python | ✓ |
-| 13–14 | Add buzzer actuator on threshold | Arduino + Pi | ⬜ |
-| 15–18 | Polish, test end to end | All | ⬜ |
+| 1 | Simulate ADC circuit | Logisim | ✓ |
+| 2 | Wire KY-038 to read analog values | Arduino | ✓ |
+| 3 | Send data over USB serial | Arduino | ✓  |
+| 4 | Set up Pi OS to receive data in Python | Raspberry Pi | ✓  |
+| 5 | Log data to CSV | Pi + Python |  ✓ |
+| 6 | Live graph with matplotlib | Pi + Python | ✓ |
+| 7 | Add buzzer actuator on threshold | Arduino + Pi | ⬜ |
+| 8 | Polish, test end to end | All | ⬜ |
 
 ---
 
@@ -77,16 +77,17 @@ B0: no gate needed — V3 connects directly
 → output is 1 whenever any loud sound is detected
 → adds 1 to the number
 
-## How to Run
+## How to Build
 > ⚠️ Instructions added as each phase is completed.
 
-### Day 1:
- adc_simulation.circ is my Logism sketch to simulate the wiring of a 3-bit ADC circuit (analog-to-digital converter). It correctly converts 3 voltage levels into a binary number 0–7. This is the exact concept inside  Arduino's chip. When .circ is placed in VS code it converts to XML language .
+### Part 1 - Simulate ADC circuit:
+adc_simulation.circ is my Logism sketch to simulate the wiring of a 3-bit ADC circuit (analog-to-digital converter). It correctly converts 3 voltage levels into a binary number 0–7. This is the exact concept inside 
+> Arduino's chip. When .circ is placed in VS code it converts to XML language .
 
 ## Logisim ADC Circuit
 ![ADC Circuit](adc_simulation.png)
 
-### Day 2:
+### Part 2 - Wire KY-038:
 I use: Arduino Uno, KY-038 sound sensor, Breadboard, 3 jumper wires, USB cable. 
 
 The KYC-038 has 4 pins: 
@@ -102,13 +103,25 @@ G pin → hole a2 → Arduino GND with a jumper wire
 + pin → hole a3 → Arduino 5V with a jumper wire
 DO pin → hole a4
 
-Plug  Arduino into Mac via USB, in Arduino IDE after selecting the board "Arduino Uno - /dev/cu.usbmodem1401" Then click "upload" for the C++ code to run:
+### Part 3 - Send data over USB serial:
+Plug Arduino into Mac via USB, in Arduino IDE after selecting the board "Arduino Uno - /dev/cu.usbmodem1401" Then click "upload" for the C++ code to run:
 
-[`sound_sensor_monitr.ino`](sound_sensor_monitr.ino) — 
+```
+void setup() {
+  Serial.begin(9600); // start serial communication at 9600 baud (speed of data transfer)
+}
+
+void loop() {
+  int soundValue = analogRead(A0); // read sensor value (0-1023)
+  Serial.println(soundValue);      // send value to PC
+  delay(100);                      // wait 100ms before next reading
+}
+```
+Or download the file I created here :) [`sound_sensor_monitr.ino`](sound_sensor_monitr.ino) — 
 
 Now I can see: KY-038 sensor is very sensitive and picks up tiny vibrations and electrical noise (random interference in the circuit) even in silence. The Arduino's ADC (analog-to-digital converter) is doing exactly what my Logisim circuit simulated eg. converting real sound waves into numbers 0–1023, with Data streams over USB serial to my Mac.
 
-### Day 3:
+### Part 4 - Set up Pi OS to receive data in Python:
 The Micro SD card is what holds the OS.
 Connect:
 PI to power
@@ -123,84 +136,86 @@ Install the imager "balena Etcher" (I had trouble with the Raspberry Pi Imager, 
 
 When done insert the SD card into the Raspberry pie 
 Connect the Raspberry PI with keyboard, mouse, monitor, ethernet and power.
-The connect the Arduino to the Raskberry PI with a USBA - USBB (square) cable
-Both should light up green at least
+Then connect the Arduino to the Raskberry PI: USB A port for Arduino - USB B port (square) cable for PI
+Both should light up green at least.
 
-Now in the GUI from the PI in terminal type: ls /dev/tty* (You’re asking the Pi: “show me all connected communication devices”)
-ls = list files
-/dev = folder where devices live (hardware shows up as files)
-tty* = “show all communication ports”
+Now when you see the GUI open up the terminal. From the PI terminal type: ```ls /dev/tty*```
+(You’re asking the Pi: “show me all connected communication devices”)
+> ```ls``` = list files
+> ```/dev``` = folder where devices live (hardware shows up as files)
+> ```tty*``` = “show all communication ports”
 
-/dev/ttyACM0 or /dev/ttyUSB0 = the Arduino
+Look for either /dev/ttyACM0 or /dev/ttyUSB0 = the Arduino
 
-Now read data from it. In terminal: nano read_serial.py
-In file: "import serial
+Now we´ll read data from it. In terminal: nano read_serial.py
+```python
+import serial
 
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 while True:
     line = ser.readline().decode().strip()
-    print(line)"
-
+    print(line)
+```
 Save and run from terminal: python3 read_serial.py
-
 I see Numbers start printing (0–1023)! That means Arduino is sending data, Pi is receiving it, Serial connection works. 
 
 
-### Day 9:
-Now lets make/replace the old python script to also log incoming data into a .csv file, allowing persistent storage for later analysis and visualization. read_serial_to_csv.py
-"import serial
+### Part 5 - Log data to CSV
+Now lets make/replace the old python script to also log incoming data into a .csv file, allowing persistent storage for later analysis and visualization: read_serial_to_csv.py
+```python
+import serial
 import csv
 
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 with open('sound_data.csv', 'w', newline='') as f:
     writer = csv.writer(f)
-
     while True:
         line = ser.readline().decode().strip()
         print(line)
-        writer.writerow([line])"
+        writer.writerow([line])
+```
+
 
 In terminal run the script: python3 read_serial_to_csv.py
 Then stop it: CTRL + C
-Then check the new file with data log exists: ls
-In terminal Check the content: cat sound_data.csv
+Then check the new file with data log exists, use ```ls``` to list all files
 
+In terminal Check the content with ```cat sound_data.csv```
 Logging works!
 
-
-Now lets make the data displayed as a live graph, read_serial_to_graph.py
-"import serial
+### Part 6 - Live graph with matplotlib
+Now lets make the data displayed as a live graph: read_serial_to_graph.py
+```python
+import serial
 import matplotlib.pyplot as plt
 
 ser = serial.Serial('/dev/ttyACM0', 9600)
-
 data = []
-
 plt.ion()
 
 while True:
     line = ser.readline().decode().strip()
-
     if line == "":
         continue
-
     value = int(line)
-    
+
     data.append(value)
     data = data[-50:]
-
     plt.clf()
     plt.plot(data)
-    plt.pause(0.01)"
+    plt.pause(0.01)
+```
 
-Before running use apt (system packages) to install matplotlib library: sudo apt install python3-matplotlib
+Before running I needed to use apt (system packages) to install matplotlib library: ```sudo apt install python3-matplotlib```
+
 In terminal run the script: python3 read_serial_to_graph.py
-
 A window pops up and my Graph moves in real-time!
 
-### Day 13 
-buzzer part
+### Part 7 - Add buzzer actuator on threshold
+
+
+### Part 8 - Polish, test end to end
 
 *Built for Microprocessors & Signals*
