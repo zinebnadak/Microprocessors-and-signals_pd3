@@ -22,11 +22,8 @@ An introduction to microprocessor systems, signal theory, and embedded programmi
 - Development project around a chosen microprocessor application
 
 ## Prerequisites
-- Basic programming (equivalent to Introduction to Programming)
-- Basic mathematics (equivalent to Discrete Mathematics)
-
-## Project files 
-Covers signals, sampling, sensors, actuators, microprocessor programming, and a real application.
+- Basic programming 
+- Basic mathematics 
 
 [arduino-sensor-monitor/](arduino-sensor-monitor/) — Sound Data Logger
 
