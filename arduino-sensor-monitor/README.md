@@ -158,7 +158,7 @@ while True:
 Save and run from terminal: python3 read_serial.py
 I see Numbers start printing (0–1023)! That means Arduino is sending data, Pi is receiving it, Serial connection works. 
 
-![Hardware setup](photos/IMG_3692.jpeg)
+<img src="photos/IMG_3692.jpeg" width="400" alt="Hardware setup">
 
 ### Part 5 - Log data to CSV
 Now lets make/replace the old python script to also log incoming data into a .csv file, allowing persistent storage for later analysis and visualization: read_serial_to_csv.py
