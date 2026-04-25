@@ -6,7 +6,7 @@
 
 ## What It Does
 
-The KY-038 sound sensor captures ambient sound as an analog voltage. The Arduino Uno samples it, converts it to a number (0–1023) via its built-in ADC (analog-to-digital converter), and streams the values over USB serial to a Raspberry Pi. The Pi logs every reading to a CSV file and plots them as a live graph. A buzzer fires when sound crosses a set threshold.
+The KY-038 sound sensor captures ambient sound as an analog voltage. The Arduino Uno samples it, converts it to a number (0–1023) via its built-in ADC (analog-to-digital converter), and streams the values over USB serial to a Raspberry Pi. The Pi logs every reading to a CSV file and plots them as a live graph. 
 
 ```
 Sound → KY-038 → Arduino (ADC + Serial) → Raspberry Pi → Graph & Log
@@ -19,7 +19,7 @@ Sound → KY-038 → Arduino (ADC + Serial) → Raspberry Pi → Graph & Log
 | Learning Goal | How It's Addressed |
 |---|---|
 | Analog & digital signals, sampling, quantization | Sensor outputs analog voltage → Arduino samples at fixed intervals → ADC quantizes to 0–1023 |
-| Sensors & actuators | KY-038 sound sensor as input, buzzer as output actuator |
+| Sensors | KY-038 sound sensor as input |
 | Microprocessor architecture & programming | Arduino Uno (ATmega328P) in C++; Raspberry Pi (ARM) runs Python |
 | Operating systems for microprocessors | Raspberry Pi runs Raspberry Pi OS — Linux on microprocessor-class hardware |
 | Digital circuit design | ADC circuit designed and simulated in Logisim before wiring |
@@ -30,7 +30,6 @@ Sound → KY-038 → Arduino (ADC + Serial) → Raspberry Pi → Graph & Log
 ## Hardware
 - Arduino Uno
 - KY-038 sound sensor (analog output)
-- Buzzer — actuator, reacts to sound threshold
 - LED + resistor — optional visual indicator
 - Raspberry Pi with Raspberry Pi OS
 - Breadboard, jumper wires, USB cable
@@ -52,8 +51,7 @@ Sound → KY-038 → Arduino (ADC + Serial) → Raspberry Pi → Graph & Log
 | 4 | Set up Pi OS to receive data in Python | Raspberry Pi | ✓  |
 | 5 | Log data to CSV | Pi + Python |  ✓ |
 | 6 | Live graph with matplotlib | Pi + Python | ✓ |
-| 7 | Add buzzer actuator on threshold | Arduino + Pi | ⬜ |
-| 8 | Polish, test end to end | All | ⬜ |
+| 7 | Polish, test end to end | All | ✓ |
 
 ---
 
@@ -160,6 +158,7 @@ while True:
 Save and run from terminal: python3 read_serial.py
 I see Numbers start printing (0–1023)! That means Arduino is sending data, Pi is receiving it, Serial connection works. 
 
+![Hardware setup](photos/IMG_3692.jpeg)
 
 ### Part 5 - Log data to CSV
 Now lets make/replace the old python script to also log incoming data into a .csv file, allowing persistent storage for later analysis and visualization: read_serial_to_csv.py
@@ -184,6 +183,8 @@ Then check the new file with data log exists, use ```ls``` to list all files
 
 In terminal Check the content with ```cat sound_data.csv```
 Logging works!
+
+[▶ Watch demo video 2](photos/IMG_3682.mov)
 
 ### Part 6 - Live graph with matplotlib
 Now lets make the data displayed as a live graph: read_serial_to_graph.py
@@ -213,9 +214,7 @@ Before running the script, matplotlib must be installed using apt (the Linux sys
 In terminal run the script: python3 read_serial_to_graph.py
 A window pops up and my Graph moves in real-time!
 
-### Part 7 - Add buzzer actuator on threshold
+[▶ Watch demo video](photos/IMG_3680.mov)
 
-
-### Part 8 - Polish, test end to end
-
-*Built for Microprocessors & Signals*
+### Part 7 - Polish, test end to end
+:)
