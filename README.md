@@ -26,5 +26,6 @@ An introduction to microprocessor systems, signal theory, and embedded programmi
 - Basic mathematics 
 
 [arduino-sensor-monitor/](arduino-sensor-monitor/) — Sound Data Logger
+[Soil-Moisture‐Based-Plant-Watering-Reminder/](https://github.com/zinebnadak/Microprocessors-and-signals_pd3/tree/main/Soil-Moisture%E2%80%90Based-Plant-Watering-Reminder) - Soil Moisture‐Based Plant Watering Reminder
 
 
