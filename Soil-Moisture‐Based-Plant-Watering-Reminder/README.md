@@ -48,12 +48,12 @@ A capacitive soil moisture sensor measures the water content in soil as an analo
 | Part | Task | Tool | Status |
 |---|---|---|---|
 | 1 | Simulate ADC circuit | Logisim | ✓ |
-| 2 | Wire capacitive sensor to MCP3008 | Raspberry Pi | ✓ |
-| 3 | Read SPI data from MCP3008 in Python | Raspberry Pi | ✓ |
-| 4 | Log data to CSV | Pi + Python | ✓ |
-| 5 | Live graph with matplotlib | Pi + Python | ✓ |
-| 6 | Send phone notification when dry | Pi + Python | ✓ |
-| 7 | Polish, test end to end | All | ✓ |
+| 2 | Wire capacitive sensor to MCP3008 | Raspberry Pi |  |
+| 3 | Read SPI data from MCP3008 in Python | Raspberry Pi |  |
+| 4 | Log data to CSV | Pi + Python |  |
+| 5 | Live graph with matplotlib | Pi + Python |  |
+| 6 | Send phone notification when dry | Pi + Python |  |
+| 7 | Polish, test end to end | All |  |
 
 ---
 
