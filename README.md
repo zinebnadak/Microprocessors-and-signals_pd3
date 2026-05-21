@@ -51,6 +51,6 @@ ATmega328P-based board running at 16 MHz with 14 digital pins, 6 analog inputs (
 ---
 
 ## What I built
-- [arduino-sensor-monitor/](arduino-sensor-monitor/) — Sound Data Logger
+- [arduino-sensor-monitor/](arduino-sound-sensor-monitor/) — Sound Data Logger
 - [Soil-Moisture‐Based-Plant-Watering-Reminder/](https://github.com/zinebnadak/Microprocessors-and-signals_pd3/tree/main/Soil-Moisture%E2%80%90Based-Plant-Watering-Reminder) - Soil Moisture‐Based Plant Watering Reminder
 
