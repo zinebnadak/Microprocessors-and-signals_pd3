@@ -2,6 +2,8 @@
 
 An introduction to microprocessor systems, signal theory, and embedded programming.
 
+![MPU](images/MPU.jpg)
+
 ## Learning Goals
 - Understand analog and digital signals, sampling, and quantization
 - Know common sensors and electrical actuators
