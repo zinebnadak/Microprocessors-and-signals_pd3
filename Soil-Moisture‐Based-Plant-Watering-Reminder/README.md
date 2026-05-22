@@ -2,6 +2,7 @@
 **Microprocessors & Signals Project** &nbsp;·&nbsp; Raspberry Pi 5 · Capacitive Soil Moisture Sensor · MCP3008 ADC · Logisim
 
 <img src="images/intro.jpg" alt="Soil Moisture-Based Plant Watering Reminder" width="600"/>
+
 > The wirings in this picture are wrong so please follow the correct ones under [Part 2: Wirings](#part-2-wirings)
 
 ---
@@ -66,7 +67,7 @@ A capacitive soil moisture sensor measures the water content in soil as an analo
 ![moist](images/moist_binary.png)
 ![wet](images/wet_binary.png)
 
-## Part 2: Wirings
+## part 2: Wirings
 
 > Place the MCP3008 so it straddles the center gap of the breadboard. The notch part of the MCP3008 should be up (facing away form you), so that pin 1-8 and its legs are on the left and pin 9-16 with its legs are on the right side.
 
