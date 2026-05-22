@@ -2,7 +2,7 @@
 **Microprocessors & Signals Project** &nbsp;·&nbsp; Raspberry Pi 5 · Capacitive Soil Moisture Sensor · MCP3008 ADC · Logisim
 
 <img src="images/intro.jpg" alt="Soil Moisture-Based Plant Watering Reminder" width="600"/>
-> The wirings in this picture are wrong so please follow the correct ones under [Part 2: Wirings](#part-2-wirings)
+
 ---
 
 ## What It Does
