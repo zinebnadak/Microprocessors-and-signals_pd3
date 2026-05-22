@@ -80,10 +80,10 @@ Pin 16 (VDD) to PI 1. Pin 15 (VREF) to PI 17. Pin 14 to PI 9 (GND). Pin 13 to PI
 
 
 ### Soil moisture sensor
-The sensor v1.2 connects via its JST connector. Black wire → PI ground (-). Red wire → PI 5V (+). Yellow wire (AOUT) → MCP3008 Pin 1 (CH0).
+The sensor v1.2 connects via its JST connector. Black wire → PI ground (-). Red wire → PI 5V (+). Yellow wire (AOUT) → MCP3008 Pin 1 (CH0)
 
 
-<img src="images/wiring_3.jpg" width="600"/>
+<img src="images/wiring_3.png" width="600"/>
 
 
 ### Final wirings!
