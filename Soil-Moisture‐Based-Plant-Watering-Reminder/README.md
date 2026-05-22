@@ -3,7 +3,7 @@
 
 <img src="images/intro.jpg" alt="Soil Moisture-Based Plant Watering Reminder" width="600"/>
 
-> The wirings in this picture are wrong so please follow the correct ones under [Part 2: Wirings](#part-2-wirings)
+> The wirings in this picture are not the ones i ended up using so please follow the correct ones under [Part 2: Wirings](#part-2-wirings)
 
 ---
 
