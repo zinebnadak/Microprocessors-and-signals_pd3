@@ -73,21 +73,23 @@ A capacitive soil moisture sensor measures the water content in soil as an analo
 Pin 16 (VDD) to PI 1. Pin 15 (VREF) to PI 17. Pin 14 to PI 9 (GND). Pin 13 to PI 23 (CLK). Pin 12 to PI 21. Pin 11 to PI 19. Pin 10 to PI 24. Pin 9 to PI 25 (GND) Pin 1 (CH0) receives the analog signal from the soil moisture sensor. Pins 2–8 (CH1–CH7) are left unconnected.
 
 
-![wiring](images/wiring.png)
-![wiring](images/wiring_2.png)
+
+<img src="images/wiring.png" width="600"/>
+<img src="images/wiring_2.png" width="600"/>
+
 
 
 ### Soil moisture sensor
 The sensor v1.2 connects via its JST connector. Black wire → PI ground (-). Red wire → PI 5V (+). Yellow wire (AOUT) → MCP3008 Pin 1 (CH0).
 
 
-![wiring](images/wiring_3.jpg)
+<img src="images/wiring_3.png" width="600"/>
 
 
 ### Final wirings!
 
+<img src="images/intro_2.JPG" width="600"/>
 
-![Soil Moisture-Based Plant Watering Reminder](images/intro_2.JPG)
 
 ## part 3: Read SPI data from MCP3008 in Python
 The starting point. Opens the SPI connection to the MCP3008 and reads the raw ADC value from channel 0 every 2 seconds. Prints a timestamp and the raw number (0–1023) to the terminal.  No conversion or no logging yet, just confirming the sensor and wiring work.
@@ -106,7 +108,7 @@ The starting point. Opens the SPI connection to the MCP3008 and reads the raw AD
 > Create a new file!
 ```readsensor.py```
 
-![raw](images/raw.JPG)
+<img src="images/raw.JPG" width="600"/>
 
 
 ## part 4: Log data to CSV
@@ -114,7 +116,7 @@ Adds CSV logging on top of the sensor read. Every reading gets converted to a mo
 > Create a new file!
 ```logger.py```
 
-![log](images/log.JPG)
+<img src="images/log.JPG" width="600"/>
 https://github.com/user-attachments/assets/2b795d46-7ace-43c5-be2d-a34f218e6dfb
 
 ## part 5: Live graph with matplotlib
@@ -122,7 +124,7 @@ Adds a live matplotlib graph. Instead of just printing to the terminal, it plots
 > Create a new file!
 ```live_graph.py```
 
-![graph](images/graph.JPG)
+<img src="images/graph.JPG" width="600"/>
 
 ## part 6: Send phone notification when dry
 > Create a new file!
@@ -138,18 +140,15 @@ This project uses the Telegram Bot API token and your personal telegram chat-id 
 ``` TELEGRAM_TOKEN   = "your token here"```
 ```TELEGRAM_CHAT_ID = "your chat ID here"```
 
-
-![final](images/notifications_screen.PNG)
-![final](images/notifications.PNG)
-
+<img src="images/notifications_screen.PNG" width="600"/>
+<img src="images/notifications.PNG" width="600"/>
 
 ## part 7: Polish, test end to end
 > Rather than separate modules, parts 3–6 are combined in into a single script: SPI sensor reading, CSV logging, and Telegram notifications all run together in one continuous loop!
 > Create a new file!
 ```plant_watering_reminder.py ```
 
-![final](images/final.PNG)
-
+<img src="images/final.PNG" width="600"/>
 
 
 ### Why Raspberry Pi over Arduino?
@@ -163,9 +162,7 @@ The Raspberry Pi was chosen over Arduino for this project because of its built-i
 
 The soil moisture sensor generates an analog voltage based on the water content in the soil. Since the Raspberry Pi only understands digital signals, the MCP3008 ADC chip acts as a translator — converting the voltage into a digital number (0–1023) that the Python script can process, log, graph, and act on.
 
-![soil_moisture_signal_flow](images/soil_moisture_signal_flow.svg)
-
-
+<img src="images/soil_moisture_signal_flow.svg" width="600"/>
 
 ### Common errors I got during build
 
