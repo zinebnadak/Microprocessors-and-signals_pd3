@@ -1,7 +1,7 @@
 # Soil Moisture-Based Plant Watering Reminder
 **Microprocessors & Signals Project** &nbsp;·&nbsp; Raspberry Pi 5 · Capacitive Soil Moisture Sensor · MCP3008 ADC · Logisim
 
-![Soil Moisture-Based Plant Watering Reminder](images/intro.png)
+<img src="images/intro.jpg" alt="Soil Moisture-Based Plant Watering Reminder" width="600"/>
 
 ---
 
