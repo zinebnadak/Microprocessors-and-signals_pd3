@@ -83,7 +83,7 @@ Pin 16 (VDD) to PI 1. Pin 15 (VREF) to PI 17. Pin 14 to PI 9 (GND). Pin 13 to PI
 The sensor v1.2 connects via its JST connector. Black wire → PI ground (-). Red wire → PI 5V (+). Yellow wire (AOUT) → MCP3008 Pin 1 (CH0).
 
 
-<img src="images/wiring_3.png" width="600"/>
+<img src="images/wiring_3.jpg" width="600"/>
 
 
 ### Final wirings!
@@ -117,7 +117,6 @@ Adds CSV logging on top of the sensor read. Every reading gets converted to a mo
 ```logger.py```
 
 <img src="images/log.JPG" width="600"/>
-https://github.com/user-attachments/assets/2b795d46-7ace-43c5-be2d-a34f218e6dfb
 
 ## part 5: Live graph with matplotlib
 Adds a live matplotlib graph. Instead of just printing to the terminal, it plots moisture percentage over time in a window that updates every second. The x-axis shows timestamps and the y-axis shows 0–100%. Good for visually watching the soil dry out.
